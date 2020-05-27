@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="uk-background-cover uk-height-medium uk-flex uk-flex-center uk-flex-middle top-icon"></div>
+
+<article class="uk-article">
+	<h1 class="uk-article-title">寿司食いねェ！</h1>
+	<p class="uk-text-lead">一般に米飯などと主に魚介類を組み合わせた和食。
+		寿司には、乳酸を主たる酸味成分とする寿司（なれずし等）と、酢酸を主たる酸味成分とする寿司（早ずし）がある。
+		握り寿司が代表的であるが、いなり寿司、押し寿司、ばら寿司など様々な形態がある。また、巻き寿司や稲荷寿司など必ずしも魚介類と組み合わせない寿司もある。さらに卯の花寿司や蕎麦寿司のように米飯ではない材料を用いた寿司もある。
+	</p>
+	<p class="uk-article-meta"><a href="https://ja.wikipedia.org/wiki/寿司">寿司 - Wikipedia</a> より抜粋</p>
+	<p>定番のまぐろ、いか、海老、玉子はもちろん、ハンバーグや唐揚げといった魚介類以外の寿司も増えてきた。寿司の人気は日本だけに留まらず、もはや日本を代表する食文化と言っても過言ではない。しかし、海外では現地の人々が食べやすいよう味付けが大きく変えられていたり、カリフォルニアロールを代表とする奇抜な創作寿司も多く登場した。そのような奇抜な寿司に対して多くの人が否定的であるが、意外と美味しかったりする。<br>なにわともあれ、お寿司は美味しい。お寿司バンザイ</p>
+</article>
+
+<form method="post" action="/helloai" enctype="multipart/form-data" class="up-form">
+	<p>
+		お寿司の画像をアップロードしてください。当店のSUSHI AIがスシロー・はま寿司・かっぱ寿司の３店舗からどの店舗なのか判別し、まぐろ・いか・海老・玉子の４種類からネタを判別します。<br>結果が間違っていた時はそういうものだと思ってください。
+	</p>
+	<p class='uk-article-meta'>ヒント<br>お皿とネタの全体を上から撮影した画像だと当店のSUSHI AIが判別しやすくなります</p>
+	<input type="file" id="sushi" name="sushi">
+	<input type="submit" value="おすしの判別" class="cp_btn">
+</form>
+
+<div id="loader-bg">
+	<span class="uk-margin-small-right" uk-spinner="ratio: 3"></span>
+</div>
+
+{% if flag %}
+<div class="popup" id="js-popup">
+	<div class="popup-inner">
+		<div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+		<div class='uk-child-width-expand@s' uk-grid>
+			<div>
+
+				<!-- 失敗したとき -->
+				{% if fail %}
+				<h2><i>{{ shop }}{{ neta }}</i></h2>
+				<p>お寿司じゃないかも。&#x1f914;</p>
+
+				{% else %}
+				<h2><i>{{ shop }}の{{ neta }}</i></h2>
+				<p class="uk-article-meta">お寿司AIの分析の結果はコチラ</p>
+				<p>
+					{% for ss in detail %}
+					{{ ss }}<br>
+					{% endfor %}
+				</p>
+				{% endif %}
+
+			</div>
+
+			<div><img src={{ src }} /></div>
+		</div>
+	</div>
+	<div class="black-background" id="js-black-bg"></div>
+</div>
+<!-- https://tech-dig.jp/js-modal/ -->
+{% endif %}
+
+{% endblock %}

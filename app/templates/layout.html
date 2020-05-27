@@ -1,0 +1,35 @@
+<html lang="ja">
+<title>{{ title }}</title>
+<head>
+	<meta charset="utf-8"/>
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/css/uikit.min.css" />
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/js/uikit-icons.min.js"></script>
+
+	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+
+	<script src="../static/js/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="manifest" href="manifest.json">
+
+	<!-- font -->
+	<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+</head>
+
+<body>
+	{% block content %}{% endblock %}
+</body>
+
+<footer>
+	<ul class="footer-menu">
+     <li>寿司 |</li>
+     <li>鮨 |</li>
+     <li>鮓 |</li>
+		 <li>Sushi</li>
+    </ul>
+	<p>シャリを残すのはやめましょう</p>
+</footer>
+
+</html>

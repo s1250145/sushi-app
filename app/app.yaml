@@ -1,0 +1,11 @@
+runtime: python37
+env: standard
+instance_class: F4_HIGHMEM
+entrypoint: gunicorn -b :$PORT main:app
+
+handlers:
+- url: /
+  script: auto
+
+env_variables:
+    CLOUD_STORAGE_BUCKET: flask-sushi-app.appspot.com
